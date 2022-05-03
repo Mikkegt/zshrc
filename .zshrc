@@ -1,28 +1,4 @@
-# autoload -Uz compinit && compinit
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
-status_code () {
-  local ok="🌼"
-  local ng="🍄"
-  local color face reset
-  color="%{%(?.${fg[green]}.${fg[blue]})%}"
-  face="%(?.$ok.$ng)"
-  reset="%{$reset_color%}"
-  echo "$color$face$reset"
-}
-
-# PROMPT='%F{003}%*%f %F{magenta}%n%f@%F{blue}%M%f %F{200}[%~]%f${vcs_info_msg_0_}
-PROMPT='%F{003}%*%f %M%f %F{200}[%~]%f${vcs_info_msg_0_}
-`status_code` %# '
-show_zsh_prompt_colors() {
-  for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done;echo
-}
+source ~/.my-git-prompt
 
 export PATH="$PATH:/Users/hogefuga/workspace/github.com/flutter/flutter/bin"
 
@@ -61,7 +37,7 @@ export PATH="$PATH:`yarn global bin`"
 export GOOGLE_APPLICATION_CREDENTIALS="hogefuga"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/higefuga/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hogefuga/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/hogefuga/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hogefuga/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/hogefuga/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hogefuga/google-cloud-sdk/completion.zsh.inc'; fi
